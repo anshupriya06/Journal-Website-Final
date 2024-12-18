@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="main-logo">
+            <img src="{% static 'home/assets/logo.png' %}" alt="logo">
+            <p>Journal of Ancient Science, Education & Research</p>
+        </div>
+        <div class="Frame-19161">
+            <div class="dropdown">
+                <a href="{% url "home" %}">Home</a>
+            </div>
+
+            <div class="dropdown">
+                <a href="{% url "about" %}" class="dropbtn">About</a>
+                <div class="dropdown-content">
+                    <a href="">About the Journal</a>
+                    <a href="">Aims and Scope</a>
+                    <a href="">Editorial Team</a>
+                    <a href="">Advisory Board</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="{% url "policies" %}" class="dropbtn">Policies</a>
+                <div class="dropdown-content">
+                    <a href="">Gidelines for Authors</a>
+                    <a href="">Open Acess Policy</a>
+                    <a href="">Publications</a>
+                    <a href="">Publication Ethics and Malpractice Statement </a>
+                    <a href="">Privacy Statement</a>
+                    <a href="">Disclaimer</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Call For Papers</a>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Archives</a>
+            </div>
+
+            <div class="dropdown">
+                <a href="{% url "contact" %}" class="dropbtn">Contact</a>
+            </div>
+        </div>
+        <div class="group-19161">
+            <a href="{% url "login" %}">Login</a>
+            <a href="{% url "register" %}"><button>Register</button></a>
+        </div>
+    </nav>
+        {% block content %}
+        
+        {% endblock content %}
+</body>
+</html>
