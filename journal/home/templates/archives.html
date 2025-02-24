@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Archives{% endblock title %}
+
+{% block content %}
+<div class="archives-container">
+    <h1>Archives</h1>
+    
+    <!-- Search and Filter Section -->
+    <div class="search-filter-section">
+        <div class="search-box">
+            <input type="text" placeholder="Search papers...">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="filter-options">
+            <select class="filter-select" id="year-filter">
+                <option value="">Select Year</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+            </select>
+            
+            <select class="filter-select" id="category-filter">
+                <option value="">Select Category</option>
+                <option value="science">Science</option>
+                <option value="technology">Technology</option>
+                <option value="medicine">Medicine</option>
+                <option value="humanities">Humanities</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Archives Content -->
+    <div class="archives-content">
+        <!-- Volume Section -->
+        <div class="volume-section">
+            <h2>Volume 12 - 2024</h2>
+            
+            <div class="paper-grid">
+                <!-- Paper Card -->
+                <div class="paper-card">
+                    <div class="paper-info">
+                        <h3>Ancient Medical Practices in South Asia</h3>
+                        <p class="authors">by John Doe, Jane Smith, Robert Johnson</p>
+                        <p class="publication-info">Published: January 15, 2024 | DOI: 10.1234/jas.2024.001</p>
+                        <p class="abstract">This paper explores the traditional medical practices that were prevalent in ancient South Asia...</p>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i> PDF</a>
+                        <a href="#" class="btn-cite"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+
+                <!-- More Paper Cards -->
+                <div class="paper-card">
+                    <div class="paper-info">
+                        <h3>Archaeological Findings in the Indus Valley</h3>
+                        <p class="authors">by Sarah Williams, Michael Brown</p>
+                        <p class="publication-info">Published: February 2, 2024 | DOI: 10.1234/jas.2024.002</p>
+                        <p class="abstract">Recent excavations in the Indus Valley have revealed new insights into urban planning...</p>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i> PDF</a>
+                        <a href="#" class="btn-cite"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Previous Volume Section -->
+        <div class="volume-section">
+            <h2>Volume 11 - 2023</h2>
+            
+            <div class="paper-grid">
+                <div class="paper-card">
+                    <div class="paper-info">
+                        <h3>Ancient Sanskrit Literature Analysis</h3>
+                        <p class="authors">by David Chen, Priya Patel</p>
+                        <p class="publication-info">Published: December 10, 2023 | DOI: 10.1234/jas.2023.012</p>
+                        <p class="abstract">A comprehensive analysis of ancient Sanskrit texts reveals patterns in literary styles...</p>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i> PDF</a>
+                        <a href="#" class="btn-cite"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <span class="page-dots">...</span>
+        <a href="#" class="page-link">10</a>
+    </div>
+</div>
+{% endblock content %} 

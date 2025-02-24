@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}Join as Member{% endblock title %}
+
+{% block content %}
+<div class="join-container">
+    <h1>Join as Member</h1>
+    <div class="join-content">
+        <form class="join-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="linkedin">LinkedIn ID</label>
+                <input type="url" id="linkedin" name="linkedin" required>
+            </div>
+            <div class="form-group">
+                <label for="scopus">Scopus ID</label>
+                <input type="text" id="scopus" name="scopus" required>
+            </div>
+            <div class="form-group">
+                <label for="orchid">ORCID ID</label>
+                <input type="text" id="orchid" name="orchid" required>
+            </div>
+            <div class="form-group">
+                <label for="designation">Designation</label>
+                <input type="text" id="designation" name="designation" required>
+            </div>
+            <div class="form-group">
+                <label for="qualification">Highest Qualification</label>
+                <input type="text" id="qualification" name="qualification" required>
+            </div>
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </div>
+</div>
+{% endblock content %} 

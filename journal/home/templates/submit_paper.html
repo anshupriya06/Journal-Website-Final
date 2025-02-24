@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}Submit Paper{% endblock title %}
+
+{% block content %}
+<div class="submit-container">
+    <h1>Submit Your Paper</h1>
+    <div class="submit-content">
+        <form class="submit-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="affiliation">Affiliation</label>
+                <input type="text" id="affiliation" name="affiliation" required>
+            </div>
+
+            <div class="form-group">
+                <label for="paper_title">Title of the Paper</label>
+                <input type="text" id="paper_title" name="paper_title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="abstract">Abstract</label>
+                <textarea id="abstract" name="abstract" rows="6" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="attachment">Paper Attachment (PDF)</label>
+                <input type="file" id="attachment" name="attachment" accept=".pdf" required>
+                <small class="file-hint">Please upload your paper in PDF format</small>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Paper</button>
+        </form>
+    </div>
+</div>
+{% endblock content %} 

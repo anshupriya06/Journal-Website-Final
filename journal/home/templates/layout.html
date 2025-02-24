@@ -10,6 +10,7 @@
         {% endblock title %}
     </title>
     <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <nav>
@@ -24,38 +25,51 @@
 
             <div class="dropdown">
                 <a href="{% url "about" %}" class="dropbtn">About</a>
+            </div>
+            <div class="dropdown">
+                <a href="{% url 'archives' %}">Archives</a>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Publication Guidelines</a>
                 <div class="dropdown-content">
-                    <a href="">About the Journal</a>
-                    <a href="">Aims and Scope</a>
-                    <a href="">Editorial Team</a>
-                    <a href="">Advisory Board</a>
+                    <a href="{% url 'author_guidelines' %}">Author</a>
+                    <a href="{% url 'editor_guidelines' %}">Editor</a>
+                    <a href="{% url 'reviewer_guidelines' %}">Reviewer</a>
                 </div>
             </div>
             <div class="dropdown">
-                <a href="{% url "policies" %}" class="dropbtn">Policies</a>
+                <a href="#" class="dropbtn">Join Us</a>
                 <div class="dropdown-content">
-                    <a href="">Gidelines for Authors</a>
-                    <a href="">Open Acess Policy</a>
-                    <a href="">Publications</a>
-                    <a href="">Publication Ethics and Malpractice Statement </a>
-                    <a href="">Privacy Statement</a>
-                    <a href="">Disclaimer</a>
+                    <a href="{% url 'join_member' %}">Join as Member</a>
+                    <a href="{% url 'join_editor' %}">Join as Editor</a>
+                    <a href="{% url 'join_reviewer' %}">Join as Reviewer</a>
                 </div>
             </div>
+            
             <div class="dropdown">
-                <a href="#" class="dropbtn">Call For Papers</a>
+                <a href="{% url 'submit_paper' %}" class="dropbtn">Submit Paper</a>
             </div>
-            <div class="dropdown">
-                <a href="#" class="dropbtn">Archives</a>
-            </div>
+
 
             <div class="dropdown">
                 <a href="{% url "contact" %}" class="dropbtn">Contact</a>
             </div>
         </div>
         <div class="group-19161">
-            <a href="{% url "login" %}">Login</a>
-            <a href="{% url "register" %}"><button>Register</button></a>
+            <div class="nav-auth">
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" class="dropbtn">{{ user.username }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'profile' %}">Profile</a>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" class="login-btn">Login</a>
+                    <a href="{% url 'register' %}" class="register-btn">Register</a>
+                {% endif %}
+            </div>
         </div>
     </nav>
         {% block content %}

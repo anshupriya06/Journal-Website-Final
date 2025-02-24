@@ -1,8 +1,72 @@
-{% extends "layout.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'home/css/login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <img src="{% static 'home/assets/logo.png' %}" alt="Logo">
+        <div class="login-card">
+            <h2>Login to your account</h2>
+            
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
 
-{% block title %}Login{% endblock title %}
+            <form id="loginForm" action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+                    <a href="{% url 'password_reset' %}" class="forgot-password">Forgot your password?</a>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="stay-signed-in" name="stay-signed-in">
+                    <label for="stay-signed-in">Stay signed in for a week</label>
+                </div>
+                <button type="submit" class="btn-continue">Continue</button>
+            </form>
 
-{% block content %}
-<h1>This is login page</h1>
-{% endblock content %}
+            <div class="divider">or</div>
+            
+            <button class="btn-google">
+                <img src="{% static 'home/assets/Google.png' %}" alt="Google Logo">
+                Continue with Google
+            </button>
+
+            <div class="create-account">
+                Not registered yet? <a href="{% url 'register' %}">Create an Account</a>
+            </div>
+        </div>
+        <footer>
+            <p>By continuing you agree to our <a href="#">privacy policy</a> and <a href="#">terms of use</a></p>
+            <div class="footer-links">
+                <a href="#">Contact</a> | <a href="#">Privacy & terms</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            // Form validation is handled by HTML5 required attributes
+            // Additional validation can be added here if needed
+        });
+    </script>
+</body>
+</html>
 
