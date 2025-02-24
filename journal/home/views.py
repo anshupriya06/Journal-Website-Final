@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
 from .models import User
+from django.contrib.auth.decorators import login_required
+from social_django.utils import load_strategy
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 def index (request):
@@ -14,7 +17,7 @@ def contact(request):
     return render(request, 'contact.html')
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'index.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -24,10 +27,10 @@ def login_view(request):
 
         try:
             user = User.objects.get(email=email)
-            user = authenticate(username=user.username, password=password)
+            user = authenticate(request, username=user.username, password=password)
             
             if user is not None:
-                login(request, user)
+                auth_login(request, user)
                 if not remember_me:
                     request.session.set_expiry(0)
                 messages.success(request, 'Login successful!')
@@ -45,6 +48,36 @@ def logout_view(request):
     return redirect('home')
 
 def register(request):
+    if request.method == 'POST':
+        username = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm-password')
+
+        # Validate if user already exists
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Email already registered')
+            return render(request, 'register.html')
+
+        # Validate if passwords match
+        if password != confirm_password:
+            messages.error(request, 'Passwords do not match')
+            return render(request, 'register.html')
+
+        try:
+            # Create new user
+            user = User.objects.create(
+                username=username,
+                email=email,
+                password=make_password(password),  # Hash the password
+                is_active=True
+            )
+            messages.success(request, 'Registration successful! Please login.')
+            return redirect('login')
+        except Exception as e:
+            messages.error(request, f'Registration failed: {str(e)}')
+            return render(request, 'register.html')
+
     return render(request, 'register.html')
 
 def editor(request):
@@ -79,3 +112,20 @@ def submit_paper(request):
 
 def archives(request):
     return render(request, 'archives.html')
+
+def google_callback(request):
+    if request.user.is_authenticated:
+        messages.success(request, 'Successfully logged in with Google!')
+        return redirect('home')
+    messages.error(request, 'Google login failed.')
+    return redirect('login')
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
+
+def privacy_view(request):
+    return render(request, 'privacy.html')
+
+def terms_view(request):
+    return render(request, 'terms.html')

@@ -23,16 +23,18 @@
             </div>
             {% endif %}
 
-            <form id="loginForm" action="{% url 'login' %}" method="POST">
+            <form id="loginForm" method="POST">
                 {% csrf_token %}
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
                 </div>
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                    <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+                    <div class="password-field">
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                    </div>
                     <a href="{% url 'password_reset' %}" class="forgot-password">Forgot your password?</a>
                 </div>
                 <div class="checkbox-group">
@@ -44,28 +46,33 @@
 
             <div class="divider">or</div>
             
-            <button class="btn-google">
+            <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn-google">
                 <img src="{% static 'home/assets/Google.png' %}" alt="Google Logo">
                 Continue with Google
-            </button>
+            </a>
 
             <div class="create-account">
                 Not registered yet? <a href="{% url 'register' %}">Create an Account</a>
             </div>
         </div>
         <footer>
-            <p>By continuing you agree to our <a href="#">privacy policy</a> and <a href="#">terms of use</a></p>
-            <div class="footer-links">
-                <a href="#">Contact</a> | <a href="#">Privacy & terms</a>
-            </div>
+            <p>By continuing you agree to our <a href="{% url 'privacy' %}">Privacy Policy</a> and <a href="{% url 'terms' %}">Terms of Use</a></p>
         </footer>
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            // Form validation is handled by HTML5 required attributes
-            // Additional validation can be added here if needed
-        });
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '👁️';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁️';
+            }
+        }
     </script>
 </body>
 </html>
