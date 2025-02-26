@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
-    'social_django',
+    # Remove 'social_django' if you're not using it
 ]
 
 MIDDLEWARE = [
@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'journal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'journal_db',          # Your database name
-        'USER': 'postgres',            # Your PostgreSQL username
-        'PASSWORD': '1234',            # Your PostgreSQL password
+        'NAME': 'journal_db',
+        'USER': 'postgres',
+        'PASSWORD': '1234',  # Your PostgreSQL password
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -135,10 +135,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/media/'  # URL for accessing media files
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-AUTH_USER_MODEL = 'home.User'
+# Make sure you have this setting
+# AUTH_USER_MODEL = 'home.User'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
@@ -181,6 +182,6 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 # Social auth settings
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
+# SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
 SOCIAL_AUTH_LOGIN_ERROR_URL = 'login' 

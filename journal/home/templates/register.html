@@ -12,31 +12,25 @@
     <!-- Register Box -->
     <div class="register-card">
         <h2>Register</h2>
-        <form action="{% url 'register' %}" method="POST">
+        <form method="POST" action="{% url 'register' %}">
             {% csrf_token %}
             <div class="input-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="UserName" required>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
             </div>
-
             <div class="input-group">
-                <label for="email">Email ID</label>
-                <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
             </div>
-
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+                <input type="password" id="password" name="password" required>
             </div>
-
             <div class="input-group">
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
-                <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
+                <input type="password" id="confirm-password" name="confirm-password" required>
             </div>
-
-            <button type="submit" class="btn-continue">Continue</button>
+            <button type="submit" class="btn-continue">Register</button>
         </form>
 
         <div class="divider">or</div>

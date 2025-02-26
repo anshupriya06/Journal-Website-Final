@@ -57,9 +57,9 @@
         </div>
         <div class="group-19161">
             <div class="nav-auth">
-                {% if user.is_authenticated %}
+                {% if request.session.is_authenticated %}
                     <div class="dropdown">
-                        <a href="#" class="dropbtn">{{ user.username }}</a>
+                        <a href="#" class="dropbtn">{{ request.session.username }}</a>
                         <div class="dropdown-content">
                             <a href="{% url 'profile' %}">Profile</a>
                             <a href="{% url 'logout' %}">Logout</a>

@@ -6,7 +6,8 @@
 <div class="join-container">
     <h1>Join as Member</h1>
     <div class="join-content">
-        <form class="join-form">
+        <form class="join-form" method="POST">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>

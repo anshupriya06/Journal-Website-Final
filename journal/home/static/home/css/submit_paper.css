@@ -1,0 +1,103 @@
+.submit-paper-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.1);
+}
+
+.submit-paper-container h2 {
+    color: #721c24;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #DEB887;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #8B4513;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.form-group input[type="file"] {
+    padding: 8px;
+    border: 2px dashed #DEB887;
+    background: #fff;
+    cursor: pointer;
+}
+
+.form-group input[type="file"]:hover {
+    border-color: #8B4513;
+}
+
+.btn-submit {
+    background: #8B4513;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    background: #A0522D;
+}
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.message.success {
+    background: #DEB887;
+    color: #8B4513;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+@media (max-width: 768px) {
+    .submit-paper-container {
+        margin: 20px;
+        padding: 20px;
+    }
+} 
