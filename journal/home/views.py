@@ -7,6 +7,7 @@ from social_django.utils import load_strategy
 from django.contrib.auth.hashers import make_password, check_password
 from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
+import os
 
 # Create your views here.
 def index (request):
@@ -79,7 +80,7 @@ def logout_view(request):
     # Clear all session data
     request.session.flush()
     messages.success(request, 'Logged out successfully')
-    return redirect('login')
+    return redirect('/')
 
 def register(request):
     if request.method == 'POST':
@@ -258,21 +259,70 @@ def google_callback(request):
     return redirect('login')
 
 def profile(request):
-    # Check if user is logged in
+    # Check if user is authenticated using session
     if not request.session.get('is_authenticated'):
-        messages.error(request, 'Please login to view profile')
+        messages.warning(request, 'Please login to view your profile.')
         return redirect('login')
     
+    # Get user data from UserRegistration model using session user_id
     try:
-        user_id = request.session.get('user_id')
-        user = UserRegistration.objects.get(id=user_id)
-        return render(request, 'profile.html', {'user': user})
+        user = UserRegistration.objects.get(id=request.session.get('user_id'))
+        context = {
+            'user': user,
+            # Since UserRegistration doesn't have profile_image field, we'll skip it for now
+            'profile_image_url': None
+        }
+        return render(request, 'profile.html', context)
     except UserRegistration.DoesNotExist:
-        messages.error(request, 'User not found')
-        return redirect('login')
+        messages.error(request, 'User profile not found.')
+        return redirect('home')
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        try:
+            user = request.user
+            
+            # Handle profile image upload
+            if 'profile_image' in request.FILES:
+                # Delete old profile image if it exists
+                if user.profile_image:
+                    if os.path.exists(user.profile_image.path):
+                        os.remove(user.profile_image.path)
+                
+                # Save new profile image
+                profile_image = request.FILES['profile_image']
+                fs = FileSystemStorage()
+                filename = fs.save(f'profile_images/{user.id}_{profile_image.name}', profile_image)
+                user.profile_image = filename
+
+            # Update user details
+            user.username = request.POST.get('username')
+            user.email = request.POST.get('email')
+            user.bio = request.POST.get('bio')
+            
+            # Save changes
+            user.save()
+            
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('profile')
+            
+        except Exception as e:
+            messages.error(request, f'Error updating profile: {str(e)}')
+    
+    return render(request, 'edit_profile.html')
 
 def privacy_view(request):
     return render(request, 'privacy.html')
 
 def terms_view(request):
     return render(request, 'terms.html')
+
+def journals(request):
+    # Get all submitted papers/journals
+    submitted_papers = PaperSubmission.objects.all().order_by('-submitted_at')
+    
+    context = {
+        'papers': submitted_papers
+    }
+    return render(request, 'journals.html', context)

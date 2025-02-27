@@ -1,0 +1,346 @@
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #8B4513;
+}
+
+.profile-header h2 {
+    color: #8B4513;
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+.profile-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #DEB887;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #8B4513;
+    box-shadow: 0 0 10px rgba(139, 69, 19, 0.1);
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.form-group input[type="file"] {
+    padding: 10px;
+    border: 2px dashed #DEB887;
+    background: #fff;
+    cursor: pointer;
+}
+
+.btn-update {
+    background: #8B4513;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.btn-update:hover {
+    background: #A0522D;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+}
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.message.success {
+    background: #DEB887;
+    color: #8B4513;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Profile View Styles */
+.profile-view {
+    text-align: center;
+}
+
+.info-group {
+    margin: 15px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.info-group label {
+    font-weight: 600;
+    color: #8B4513;
+    margin-right: 10px;
+}
+
+.info-group p {
+    margin: 5px 0;
+    color: #444;
+}
+
+.btn-edit {
+    background: #8B4513;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    background: #A0522D;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+}
+
+/* Edit Form Styles */
+.profile-edit {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-update, .btn-cancel {
+    flex: 1;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-update {
+    background: #8B4513;
+    color: white;
+}
+
+.btn-cancel {
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.btn-update:hover {
+    background: #A0522D;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+}
+
+.btn-cancel:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+/* Add these styles to your existing profile.css */
+
+.guest-profile {
+    text-align: center;
+    padding: 30px;
+}
+
+.guest-message {
+    margin-top: 30px;
+}
+
+.guest-message p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-login, .btn-register {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    background: #8B4513;
+    color: white;
+}
+
+.btn-register {
+    background: white;
+    color: #8B4513;
+    border: 2px solid #8B4513;
+}
+
+.btn-login:hover {
+    background: #A0522D;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+}
+
+.btn-register:hover {
+    background: #8B4513;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+}
+
+/* Add to your existing profile.css */
+
+.profile-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn-update {
+    display: inline-block;
+    background: #8B4513;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-update:hover {
+    background: #A0522D;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-save {
+    flex: 1;
+    background: #8B4513;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel {
+    flex: 1;
+    background: #666;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+    background: #A0522D;
+}
+
+.btn-cancel:hover {
+    background: #888;
+} 

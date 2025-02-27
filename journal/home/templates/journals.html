@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Journals{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/journals.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="journals-container">
+    <div class="journals-header">
+        <h1>Published Journals</h1>
+        <div class="search-filter">
+            <input type="text" id="searchInput" placeholder="Search journals...">
+            <select id="statusFilter">
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="under_review">Under Review</option>
+                <option value="accepted">Accepted</option>
+                <option value="rejected">Rejected</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="journals-grid">
+        {% if papers %}
+            {% for paper in papers %}
+                <div class="journal-card">
+                    <div class="journal-status {{ paper.status }}">
+                        {{ paper.get_status_display }}
+                    </div>
+                    <h3>{{ paper.title }}</h3>
+                    <div class="journal-authors">
+                        <i class="fas fa-users"></i> {{ paper.authors }}
+                    </div>
+                    <div class="journal-date">
+                        <i class="far fa-calendar-alt"></i> {{ paper.submitted_at|date:"F d, Y" }}
+                    </div>
+                    <p class="journal-abstract">{{ paper.abstract|truncatewords:30 }}</p>
+                    <div class="journal-keywords">
+                        {% for keyword in paper.keywords.split|slice:":3" %}
+                            <span class="keyword">{{ keyword }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="journal-actions">
+                        {% if paper.paper_file %}
+                            <a href="{{ paper.paper_file.url }}" class="btn-download" target="_blank">
+                                <i class="fas fa-download"></i> Download PDF
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="no-journals">
+                <p>No journals have been submitted yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 

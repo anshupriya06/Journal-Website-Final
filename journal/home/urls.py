@@ -42,4 +42,6 @@ urlpatterns = [
 #     path('terms/', views.terms, name='terms'),
 #     path('privacy/', views.privacy, name='privacy'),
     path('profile/', views.profile, name='profile'),
+    path('profile/edit/', views.edit_profile, name='edit_profile'),
+    path('journals/', views.journals, name='journals'),
 ]

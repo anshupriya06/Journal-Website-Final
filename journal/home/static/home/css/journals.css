@@ -1,0 +1,167 @@
+.journals-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.journals-header {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.journals-header h1 {
+    color: #8B4513;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.search-filter {
+    display: flex;
+    gap: 15px;
+}
+
+.search-filter input,
+.search-filter select {
+    padding: 10px 15px;
+    border: 2px solid #DEB887;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.search-filter input:focus,
+.search-filter select:focus {
+    outline: none;
+    border-color: #8B4513;
+}
+
+.journals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.journal-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.journal-card:hover {
+    transform: translateY(-5px);
+}
+
+.journal-status {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.journal-status.pending {
+    background: #FFF3CD;
+    color: #856404;
+}
+
+.journal-status.under_review {
+    background: #CCE5FF;
+    color: #004085;
+}
+
+.journal-status.accepted {
+    background: #D4EDDA;
+    color: #155724;
+}
+
+.journal-status.rejected {
+    background: #F8D7DA;
+    color: #721C24;
+}
+
+.journal-card h3 {
+    color: #8B4513;
+    margin: 15px 0;
+    font-size: 1.3em;
+    line-height: 1.4;
+}
+
+.journal-authors,
+.journal-date {
+    color: #6c757d;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.journal-abstract {
+    color: #5D4037;
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.journal-keywords {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+.keyword {
+    background: #FDF4E3;
+    color: #8B4513;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+}
+
+.journal-actions {
+    margin-top: 20px;
+}
+
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #8B4513;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: background 0.3s ease;
+}
+
+.btn-download:hover {
+    background: #A0522D;
+}
+
+.no-journals {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+    font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+    .journals-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-filter {
+        flex-direction: column;
+    }
+    
+    .journals-grid {
+        grid-template-columns: 1fr;
+    }
+} 

@@ -1,0 +1,145 @@
+.guidelines-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.1);
+}
+
+.guidelines-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.guidelines-header h1 {
+    color: #8B4513;
+    font-size: 3em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.guidelines-header h2 {
+    color: #A0522D;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.guidelines-content {
+    line-height: 1.8;
+    font-size: 1.1em;
+}
+
+.intro-section {
+    margin-bottom: 50px;
+    padding: 30px;
+    background: #FDF4E3;
+    border-radius: 15px;
+    border-left: 5px solid #8B4513;
+}
+
+.intro-text {
+    color: #5D4037;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.intro-text:last-child {
+    margin-bottom: 0;
+}
+
+.section {
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.section h2 {
+    color: #8B4513;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 600;
+    border-bottom: 3px solid #DEB887;
+    padding-bottom: 15px;
+}
+
+.guidelines-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.guidelines-list li {
+    margin-bottom: 25px;
+    padding-left: 35px;
+    position: relative;
+    color: #5D4037;
+    font-size: 1.15em;
+    line-height: 1.8;
+}
+
+.guidelines-list li:before {
+    content: "•";
+    color: #8B4513;
+    font-size: 1.8em;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* Hover effects */
+.guidelines-list li:hover {
+    color: #8B4513;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .guidelines-container {
+        margin: 40px 20px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .guidelines-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .guidelines-header h1 {
+        font-size: 2.2em;
+    }
+
+    .guidelines-header h2 {
+        font-size: 1.6em;
+    }
+
+    .section h2 {
+        font-size: 1.8em;
+    }
+
+    .intro-text, 
+    .guidelines-list li {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .guidelines-header h1 {
+        font-size: 1.8em;
+    }
+
+    .guidelines-header h2 {
+        font-size: 1.4em;
+    }
+
+    .section h2 {
+        font-size: 1.6em;
+    }
+
+    .intro-text, 
+    .guidelines-list li {
+        font-size: 1em;
+    }
+} 

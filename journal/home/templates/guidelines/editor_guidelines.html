@@ -1,12 +1,58 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block title %}Editor Guidelines{% endblock title %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/guidelines.css' %}">
+{% endblock head %}
+
 {% block content %}
 <div class="guidelines-container">
-    <h1>Editor Guidelines</h1>
+    <div class="guidelines-header">
+        <h1>Editor Guidelines</h1>
+        <h2>Juniper Publishers</h2>
+    </div>
+    
     <div class="guidelines-content">
-        <!-- Add your editor guidelines content here -->
+        <div class="intro-section">
+            <p class="intro-text">
+                The main epigram of Juniper Publishers is to spread scientific knowledge globally. The credibility of published articles completely depends on the effective peer reviewing process; Hence, editors are the chief support for Juniper Publishers.
+            </p>
+            <p class="intro-text">
+                The Editorial board members of Juniper Publishers are responsible for publishing quality manuscripts received from authors on concerned subjects.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Roles and Responsibilities</h2>
+            <ul class="guidelines-list">
+                <li>Actively look for the views of associate editors, authors, readers, reviewers and editorial board members about ways of improving their journal's content.</li>
+                <li>Reputation of our group is enhanced by the presence of eminent editors. They also must endeavor to set higher standards for the journal whenever possible.</li>
+                <li>Sustain initiatives to educate researchers and young scholars about publication policies and ethics.</li>
+                <li>Editorial board members are most welcome to give their valuable suggestions for organizational progress.</li>
+                <li>Editors can review submitted manuscripts based on their feasible time, if time does not allow reviewing the manuscript, editors can suggest other reviewers.</li>
+                <li>Editors will look after any confidential data regarding the task. If the author has used information of certain individuals, specifically in any of his medical or scientific records, the editorial Team must look for written consent from the individual, for the record to qualify for publishing.</li>
+                <li>Grabbing editorial decisions at the right time and communicating in a clear manner.</li>
+                <li>The validity of the scientific facts stated must be checked and the criticism of the manuscript should be left open for all to decide.</li>
+                <li>The editorial board members must assure that published content is original. The reliability of the author's work is a must, so there must be proper citation and the original source of the content should be named.</li>
+                <li>The final decision regarding modification, acceptance, or rejection of a manuscript rests solely with the editor.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Benefits</h2>
+            <ul class="guidelines-list">
+                <li>Editors can be promoted as senior editor and executive editor in the concerned journal based on their active participation and also based on their experience.</li>
+                <li>Editors will be given highest priority in all the events that are organized by Juniper Publishers.</li>
+                <li>Based on their kind contributions and their efficiency, there is a chance to serve as a prominent member of the advisory board.</li>
+                <li>After one year of due course, Editor-in-Chief will be announced for every journal based on their active participation, expertise in the field, contribution towards the Journal and also their scientific contributions.</li>
+                <li>The review comments that are given by the editors will be strictly followed after which the authors will be requested to modify their manuscript according to the editor's suggestions.</li>
+                <li>We promote all the articles of the Editors that are published in our journals, in various social networking groups from our end, increasing visibility for their works.</li>
+                <li>Juniper journals consider Editorials as a note to the young researchers and scholars.</li>
+                <li>Editors shall be honored in position as Chair/Co-Chair for any conferences organized by us and also the fee will be waived.</li>
+            </ul>
+        </div>
     </div>
 </div>
 {% endblock content %} 
