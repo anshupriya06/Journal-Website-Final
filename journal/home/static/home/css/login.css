@@ -70,6 +70,7 @@ h2 {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+    -webkit-user-select: none;
     user-select: none;
 }
 
