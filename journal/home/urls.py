@@ -43,5 +43,7 @@ urlpatterns = [
 #     path('privacy/', views.privacy, name='privacy'),
     path('profile/', views.profile, name='profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
+    path('profile/update-image/', views.update_profile_image, name='update_profile_image'),
     path('journals/', views.journals, name='journals'),
+    path('article/<int:article_id>/', views.view_article, name='view_article'),
 ]

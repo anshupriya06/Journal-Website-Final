@@ -8,6 +8,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
 import os
+from django.http import JsonResponse
 
 # Create your views here.
 def index (request):
@@ -265,45 +266,65 @@ def profile(request):
         messages.warning(request, 'Please login to view your profile.')
         return redirect('login')
     
-    # Get user data from UserRegistration model using session user_id
     try:
-        user = UserRegistration.objects.get(id=request.session.get('user_id'))
+        user_id = request.session.get('user_id')
+        user_data = UserRegistration.objects.get(id=user_id)
+        user_articles = PaperSubmission.objects.filter(submitted_by=user_data).order_by('-submitted_at')
         context = {
-            'user': user,
-            # Since UserRegistration doesn't have profile_image field, we'll skip it for now
-            'profile_image_url': None
+            'user_data': user_data,
+            'user_articles': user_articles,
         }
         return render(request, 'profile.html', context)
     except UserRegistration.DoesNotExist:
         messages.error(request, 'User profile not found.')
         return redirect('home')
 
-@login_required
+def update_profile_image(request):
+    # Check if user is authenticated using session
+    if not request.session.get('is_authenticated'):
+        return JsonResponse({'success': False, 'error': 'Authentication required'})
+    
+    if request.method == 'POST' and request.FILES.get('profile_image'):
+        try:
+            user_id = request.session.get('user_id')
+            user_data = UserRegistration.objects.get(id=user_id)
+            user_data.profile_image = request.FILES['profile_image']
+            user_data.save()
+            return JsonResponse({'success': True})
+        except UserRegistration.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'User profile not found'})
+    return JsonResponse({'success': False, 'error': 'Invalid request'})
+
 def edit_profile(request):
+    # Check if user is authenticated using session
+    if not request.session.get('is_authenticated'):
+        messages.warning(request, 'Please login to edit your profile.')
+        return redirect('login')
+    
     if request.method == 'POST':
         try:
-            user = request.user
+            user_id = request.session.get('user_id')
+            user_data = UserRegistration.objects.get(id=user_id)
             
             # Handle profile image upload
             if 'profile_image' in request.FILES:
                 # Delete old profile image if it exists
-                if user.profile_image:
-                    if os.path.exists(user.profile_image.path):
-                        os.remove(user.profile_image.path)
+                if user_data.profile_image:
+                    if os.path.exists(user_data.profile_image.path):
+                        os.remove(user_data.profile_image.path)
                 
                 # Save new profile image
                 profile_image = request.FILES['profile_image']
                 fs = FileSystemStorage()
-                filename = fs.save(f'profile_images/{user.id}_{profile_image.name}', profile_image)
-                user.profile_image = filename
+                filename = fs.save(f'profile_images/{user_data.id}_{profile_image.name}', profile_image)
+                user_data.profile_image = filename
 
             # Update user details
-            user.username = request.POST.get('username')
-            user.email = request.POST.get('email')
-            user.bio = request.POST.get('bio')
+            user_data.username = request.POST.get('username')
+            user_data.email = request.POST.get('email')
             
             # Save changes
-            user.save()
+            user_data.save()
             
             messages.success(request, 'Profile updated successfully!')
             return redirect('profile')
@@ -311,7 +332,10 @@ def edit_profile(request):
         except Exception as e:
             messages.error(request, f'Error updating profile: {str(e)}')
     
-    return render(request, 'edit_profile.html')
+    # Get user data for the form
+    user_id = request.session.get('user_id')
+    user_data = UserRegistration.objects.get(id=user_id)
+    return render(request, 'edit_profile.html', {'user_data': user_data})
 
 def privacy_view(request):
     return render(request, 'privacy.html')
@@ -327,3 +351,31 @@ def journals(request):
         'papers': submitted_papers
     }
     return render(request, 'journals.html', context)
+
+def view_article(request, article_id):
+    # Check if user is authenticated using session
+    if not request.session.get('is_authenticated'):
+        messages.warning(request, 'Please login to view article details.')
+        return redirect('login')
+    
+    try:
+        article = PaperSubmission.objects.get(id=article_id)
+        # Check if the article belongs to the current user
+        user_id = request.session.get('user_id')
+        user_data = UserRegistration.objects.get(id=user_id)
+        
+        if article.submitted_by != user_data:
+            messages.error(request, 'You do not have permission to view this article.')
+            return redirect('profile')
+        
+        context = {
+            'article': article,
+            'user_data': user_data
+        }
+        return render(request, 'article_detail.html', context)
+    except PaperSubmission.DoesNotExist:
+        messages.error(request, 'Article not found.')
+        return redirect('profile')
+    except UserRegistration.DoesNotExist:
+        messages.error(request, 'User profile not found.')
+        return redirect('home')

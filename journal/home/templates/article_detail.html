@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Article Details{% endblock title %}
+
+{% block content %}
+<div class="article-detail-container">
+    <div class="article-header">
+        <h1 class="article-title">{{ article.title }}</h1>
+        <div class="article-meta">
+            <span class="article-status status-{{ article.status }}">{{ article.get_status_display }}</span>
+            <span class="article-date">Submitted: {{ article.submitted_at|date:"F d, Y" }}</span>
+        </div>
+    </div>
+
+    <div class="article-content">
+        <div class="article-section">
+            <h2>Authors</h2>
+            <p>{{ article.authors }}</p>
+        </div>
+
+        <div class="article-section">
+            <h2>Abstract</h2>
+            <p>{{ article.abstract }}</p>
+        </div>
+
+        <div class="article-section">
+            <h2>Keywords</h2>
+            <p>{{ article.keywords }}</p>
+        </div>
+
+        {% if article.paper_file %}
+        <div class="article-section">
+            <h2>Paper File</h2>
+            <a href="{{ article.paper_file.url }}" class="btn-download" target="_blank">
+                <i class="fas fa-download"></i> Download Paper
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="article-actions">
+        <a href="{% url 'profile' %}" class="btn-back">Back to Profile</a>
+    </div>
+</div>
+{% endblock %} 
