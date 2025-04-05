@@ -198,7 +198,8 @@ def join_reviewer(request):
                 scopus=request.POST.get('scopus'),
                 orchid=request.POST.get('orchid'),
                 designation=request.POST.get('designation'),
-                qualification=request.POST.get('qualification')
+                qualification=request.POST.get('qualification'),
+                area_of_specialization=request.POST.get('area_of_specialization')
             )
             messages.success(request, 'Application submitted successfully!')
             return redirect('home')

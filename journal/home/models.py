@@ -113,6 +113,7 @@ class JoinReviewer(models.Model):
     orchid = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
     qualification = models.CharField(max_length=100)
+    area_of_specialization = models.CharField(max_length=200, default='Not Specified')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, default='pending')
 
