@@ -113,31 +113,26 @@ nav {
 
 /* from here this is contaioner sction */
 .container {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    position: relative !important;
-    margin-top: 20px !important;
-    padding: 0 20px !important;
-    flex-wrap: nowrap !important;
-    gap: 20px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
 }
 
 .left-sec {
-    width: 72% !important;
-    height: 800px !important;
-    background: url('../assets/image1.jpeg') !important;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-    display: flex !important;
-    align-items: flex-start !important;
-    justify-content: center !important;
-    border-right: 2px solid #FFAD0E !important;
-    padding-top: 20px !important;
-    flex-shrink: 0 !important;
-    overflow: hidden !important;
+    width: 72%;
+    height: 800px;
+    background: url('../assets/image1.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    border-right: 2px solid #FFAD0E;
+    padding-top: 0;
 }
 
 .frame8 {
@@ -175,14 +170,14 @@ nav {
 }
 
 .right-sec {
-    width: 28% !important;
-    height: 800px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    padding-top: 20px !important;
-    flex-shrink: 0 !important;
-    overflow-y: auto !important;
+    /* background: linear-gradient(102.87deg, rgba(252, 238, 213, 0.6) 6.43%, rgba(252, 238, 213, 0.6) 78.33%, rgba(255, 231, 186, 0.6) 104.24%); */
+    height: 800px;
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-top: 0;
 }
 
 /* Sidebar Section Styling */

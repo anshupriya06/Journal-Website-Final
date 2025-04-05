@@ -47,10 +47,24 @@ def home(request):
     username = request.session.get('username')
     is_authenticated = request.session.get('is_authenticated', False)
     
-    return render(request, 'index.html', {
+    # Fetch latest journals (most recent submissions)
+    latest_journals = PaperSubmission.objects.filter(status='accepted').order_by('-submitted_at')[:3]
+    
+    # Fetch recently published journals (accepted papers)
+    recent_published = PaperSubmission.objects.filter(status='accepted').order_by('-submitted_at')[:1]
+    
+    # Fetch multiple articles (all accepted papers)
+    articles = PaperSubmission.objects.filter(status='accepted').order_by('-submitted_at')[:4]
+    
+    context = {
         'username': username,
-        'is_authenticated': is_authenticated
-    })
+        'is_authenticated': is_authenticated,
+        'latest_journals': latest_journals,
+        'recent_published': recent_published,
+        'articles': articles,
+    }
+    
+    return render(request, 'index.html', context)
 
 def login_view(request):
     if request.method == 'POST':
